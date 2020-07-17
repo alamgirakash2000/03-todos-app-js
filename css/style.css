@@ -1,0 +1,30 @@
+body{
+    background: rgb(34, 33, 33);
+    color: white;
+}
+header{
+    background: rgb(130, 24, 201);
+}
+input{
+    margin-right: 1rem;
+}
+.todo-container{
+    display: block;
+    width: 100%;
+    background: rgba(28, 19, 36, 0.966);
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+}
+.todo-container:hover{
+   background: rgb(46, 37, 46);
+}
+
+.todo-container button{
+    background: none;
+    border: none;
+    color: white;
+}

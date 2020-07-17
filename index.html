@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Todos app</title>
+</head>
+<body>
+    <header>
+        <div class="container py-1">
+            <h3>Todos</h3>
+            <p>What do you need to do?</p>
+        </div>
+    </header>
+
+    <section class="bg-dark">
+        <div class="container py-2 d-sm-flex">
+            <input type="text" id="search-todos" placeholder="Search Todo" class="py-2 pr-5 mr-5 mb-2">
+            <label for="" class='my-auto'>
+                <input type="checkbox" id='hideCheckbox'>
+                 Hide Completed
+            </label>
+
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div id="left-todos"></div>
+                    <div id="todos"></div>
+                    <form action="" id="add-todos-form">
+                        <input type="text" placeholder="write a todo" name='newTodo' class='py-2 pr-5 my-3'>
+                        <button class='btn btn-success'>Add todo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-secondary text-center text-white py-2 align-bottom mt-5 py-md-5">
+        <p>Copyright &copy Alamgir Akash, 2020. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
+    <script src='js/todos-funtion.js'></script>
+    <script src="js/todos-app.js"></script>
+</body>
+</html>
