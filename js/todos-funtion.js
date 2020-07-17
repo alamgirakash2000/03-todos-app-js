@@ -9,6 +9,7 @@ const getSavedTodos = () => {
         return []
     }
 }
+
 // Save todos to localStorage
 const saveTodos = function (todos) {
     localStorage.setItem('todos', JSON.stringify(todos))
@@ -31,7 +32,6 @@ const toggleTodo = function (id) {
         todo.completed = !todo.completed
     }
 }
-
 
 // Get the DOM elements for an individual note
 const generateTodoDOM =(todo) => {
