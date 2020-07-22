@@ -8,6 +8,8 @@
     <title>Todos app</title>
 </head>
 <body>
+
+    <!--Header Section-->
     <header>
         <div class="container py-1">
             <h3>Todos</h3>
@@ -15,6 +17,7 @@
         </div>
     </header>
 
+    <!--Menubar section Section-->
     <section class="bg-dark">
         <div class="container py-2 d-sm-flex">
             <input type="text" id="search-todos" placeholder="Search Todo" class="py-2 pr-5 mr-5 mb-2">
@@ -22,30 +25,39 @@
                 <input type="checkbox" id='hideCheckbox'>
                  Hide Completed
             </label>
-
         </div>
     </section>
-    <section class="py-5">
+
+    <!--Todos body-->
+    <section class='bg-img'>
+    <div class="py-5 bg-overlay">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
                     <div id="left-todos"></div>
+
+                    <!--Write Todos here-->
                     <div id="todos"></div>
+
+                    <!--Add todos form-->
                     <form action="" id="add-todos-form">
                         <input type="text" placeholder="write a todo" name='newTodo' class='py-2 pr-5 my-3'>
                         <button class='btn btn-success'>Add todo</button>
                     </form>
+
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
-    <footer class="bg-secondary text-center text-white py-2 align-bottom mt-5 py-md-5">
+    <footer class="bg-secondary text-center text-white py-2 align-bottom py-md-4">
         <p>Copyright &copy Alamgir Akash, 2020. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
-    <script src='todos-funtion.js'></script>
-    <script src="todos-app.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js'></script>
+    <script src='js/todos-funtion.js'></script>
+    <script src="js/todos-app.js"></script>
 </body>
 </html>
