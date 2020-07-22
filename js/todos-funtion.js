@@ -37,12 +37,18 @@ const toggleTodo = function (id) {
 
 function getFilteredTodos(todos,filters){
     var newArr= new Array()
-    for(var todo of todos){
-        if(todo.text.toLowerCase().includes(filters.searchText)){
-            newArr.push(todo)
+    try{
+        for(var todo of todos){
+            if(todo.text.toLowerCase().includes(filters.searchText)){
+                newArr.push(todo)
+            }
         }
+        return newArr
+    }catch{
+        return []
     }
-    return newArr
+
+
 }
 
 function getIncompleteTodos(todos){

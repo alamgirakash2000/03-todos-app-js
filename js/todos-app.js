@@ -1,7 +1,14 @@
 
 'use strict'
 
-let todos= getSavedTodos()
+let todos=getSavedTodos()
+if(!todos){
+    todos=[{
+        id: uuidv4(),
+        text: 'Watching Movie',
+        completed: false
+    }]
+}
 let filters={
     searchText :'',
     hideCompleted: false
