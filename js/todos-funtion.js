@@ -1,5 +1,7 @@
 'use strict'
 
+const todosEl= document.querySelector('#todos')
+
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
@@ -33,8 +35,35 @@ const toggleTodo = function (id) {
     }
 }
 
+function getFilteredTodos(todos,filters){
+    var newArr= new Array()
+    try{
+        for(var todo of todos){
+            if(todo.text.toLowerCase().includes(filters.searchText)){
+                newArr.push(todo)
+            }
+        }
+        return newArr
+    }catch{
+        return []
+    }
+
+
+}
+
+function getIncompleteTodos(todos){
+    var newArr= new Array()
+    for(var todo of todos){
+        if(!todo.completed){
+            newArr.push(todo)
+        }
+    }
+    return newArr
+}
+
+
 // Get the DOM elements for an individual note
-const generateTodoDOM =(todo) => {
+function generateDOM(todo){
     const containerEL=document.createElement('div')
     const todoEl = document.createElement('label')
     const checkbox = document.createElement('input')
@@ -64,44 +93,45 @@ const generateTodoDOM =(todo) => {
         saveTodos(todos)
         renderTodos(todos, filters)
     })
-    containerEL.appendChild(todoEl)
-    containerEL.appendChild(removeButton)
-    return containerEL
-}
-
-// Render application todos based on filters
-const renderTodos = function (todos, filters) {
-    const filteredTodos = todos.filter(function (todo) {
-        const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
-        const hideCompletedMatch = !filters.hideCompleted || !todo.completed
-        
-        return searchTextMatch && hideCompletedMatch
-    })
-
-    const incompleteTodos = filteredTodos.filter(function (todo) {
-        return !todo.completed
-    })
-    document.querySelector('#todos').innerHTML = ''
-    document.querySelector('#todos').appendChild(generateSummaryDOM(incompleteTodos))
-
-    if(filteredTodos.length===0){
-        let noTodosMsg=document.createElement('h4')
-        noTodosMsg.textContent='No todos to show'
-        document.querySelector('#todos').appendChild(noTodosMsg)
-    }else{
-        filteredTodos.forEach(function (todo) {
-            document.querySelector('#todos').appendChild(generateTodoDOM(todo))
-        })
-    }
+   containerEL.appendChild(todoEl)
+   containerEL.appendChild(removeButton)
+   todosEl.appendChild(containerEL)
 }
 
 // Get the DOM elements for list summary
 const generateSummaryDOM = function (incompleteTodos) {
+    document.querySelector('#left-todos').innerHTML=''
     const summary = document.createElement('h2')
-    if(incompleteTodos.length<=1){
+    try{
         summary.textContent = `You have ${incompleteTodos.length} todo left`
-    }else{
-        summary.textContent = `You have ${incompleteTodos.length} todos left`
+    }catch{
+        summary.textContent = `You have 0 todos left`
     }
-    return summary
+    document.querySelector('#left-todos').appendChild(summary)
+}
+
+
+// Render application todos based on filters
+function renderTodos(todos, filters){
+    const filteredTodos= getFilteredTodos(todos,filters)
+    const incompleteTodos= getIncompleteTodos(filteredTodos)
+
+    generateSummaryDOM(incompleteTodos)
+    todosEl.innerHTML=''
+    if(filters.hideCompleted){
+        if(incompleteTodos.length){
+            incompleteTodos.forEach((todo) => generateDOM(todo))
+        }else{
+            const leftTodos = document.createElement('p')
+            leftTodos.textContent='You have no todos to show'
+            document.querySelector('#todos').appendChild(leftTodos)
+            }
+    }else if(filteredTodos.length){  
+        filteredTodos.forEach((todo) => generateDOM(todo))
+
+    }else{
+        const leftTodos = document.createElement('p')
+        leftTodos.textContent='You have no todos to show'
+        document.querySelector('#todos').appendChild(leftTodos)
+        }
 }

@@ -5,6 +5,17 @@ body{
 header{
     background: rgb(130, 24, 201);
 }
+.bg-img{
+    background-image: url(../img/back.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+.bg-overlay{
+    min-height: 500px;
+    background: black;
+    opacity: .7;
+}
 input{
     margin-right: 1rem;
 }
